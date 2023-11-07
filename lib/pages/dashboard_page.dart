@@ -39,7 +39,7 @@ class _DashboardPageState extends State<DashboardPage> {
           children: [
             const SizedBox(height: 50),
             Text(
-              'Welcome PLACEHOLDER!',
+              'Welcome Placeholder!',
               style: TextStyle(
                 fontSize: 20,
               ),
