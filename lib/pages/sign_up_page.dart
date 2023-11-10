@@ -90,10 +90,13 @@ class _SignUpPageState extends State<SignUpPage> {
                           },
                         ),
                       ),
-                      Text(
-                        "I agree to TechAddict's terms and conditions.",
-                        style: TextStyle(fontSize: 16),
-                        textAlign: TextAlign.left,
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Text(
+                          "I agree to TechAddict's terms and conditions.",
+                          style: TextStyle(fontSize: 12),
+                          textAlign: TextAlign.left,
+                        ),
                       ),
                     ],
                   ),
@@ -125,7 +128,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                   child: Text('SIGN UP'),
                 ),
-
               ],
             ),
           ),
@@ -140,6 +142,5 @@ class _SignUpPageState extends State<SignUpPage> {
     return hslColor.withSaturation(saturation).toColor();
   }
 }
-
 
 void main() => runApp(MaterialApp(home: SignUpPage()));
