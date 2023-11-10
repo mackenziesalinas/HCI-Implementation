@@ -67,36 +67,39 @@ class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
                   Text(
                     'What is your main reason for using TechAddict? (choose one or more)',
                     style: GoogleFonts.playfairDisplay(
-                      fontSize: 30,
+                      fontSize: 26,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 30),
-                  Wrap(
-                    spacing: 10.0, // Adjust the spacing as needed
-                    runSpacing: 5.0,
-                    children: List.generate(goals.length, (index) {
-                      return InputChip(
-                        label: Text(
-                          goals[index],
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.normal,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0), // Add padding around the Wrap
+                    child: Wrap(
+                      spacing: 10.0,
+                      runSpacing: 5.0,
+                      children: List.generate(goals.length, (index) {
+                        return InputChip(
+                          label: Text(
+                            goals[index],
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                            ),
                           ),
-                        ),
-                        selected: isSelected[index],
-                        onSelected: (bool selected) {
-                          setState(() {
-                            isSelected[index] = selected;
-                          });
-                        },
-                        backgroundColor: isSelected[index] ? Color.fromARGB(255, 0, 8, 255) : Colors.grey[300],
-                        labelStyle: TextStyle(
-                          color: isSelected[index] ? Colors.white : Colors.black,
-                        ),
-                        elevation: isSelected[index] ? 6 : 0, // Add elevation
-                      );
-                    }),
+                          selected: isSelected[index],
+                          onSelected: (bool selected) {
+                            setState(() {
+                              isSelected[index] = selected;
+                            });
+                          },
+                          backgroundColor: isSelected[index] ? Color.fromARGB(255, 0, 8, 255) : Colors.grey[300],
+                          labelStyle: TextStyle(
+                            color: isSelected[index] ? Colors.white : Colors.black,
+                          ),
+                          elevation: isSelected[index] ? 6 : 0,
+                        );
+                      }),
+                    ),
                   ),
                   const SizedBox(height: 20),
                   Container(
