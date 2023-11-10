@@ -101,7 +101,7 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
                     }).toList(),
                   ),
                 ),
-                SizedBox(height: 30),
+                SizedBox(height: 50),
                 ElevatedButton(
                   onPressed: navigateToDashboard,
                   style: ElevatedButton.styleFrom(
