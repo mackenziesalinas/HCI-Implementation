@@ -9,7 +9,7 @@ class WhatIsYourGoalPage extends StatefulWidget {
 }
 
 class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
-  List<bool> isSelected = List.generate(6, (index) => false);
+  List<bool> isSelected = List.generate(12, (index) => false);
 
   List<String> goals = [
     'Reduce my screen time',
@@ -17,6 +17,13 @@ class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
     'Better my time-management skills',
     'Improve my mental health',
     'Get more sleep',
+    'Find more hobbies',
+    'Become less reliant on my devices',
+    'Do better in school',
+    'Be able to have more time',
+    'Spend more time with friends',
+    'Improve my physical health',
+    'Have more energy'
   ];
 
   void navigateToNextPage() {
@@ -56,51 +63,42 @@ class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const SizedBox(height: 100),
+                  const SizedBox(height: 80),
                   Text(
                     'What is your main reason for using TechAddict? (choose one or more)',
                     style: GoogleFonts.playfairDisplay(
                       fontSize: 30,
-                      fontWeight: FontWeight.normal,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   const SizedBox(height: 30),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: goals.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            isSelected[index] = !isSelected[index];
-                          });
-                        },
-                        child: SizedBox(
-                          width: 100,  // Adjust the width as needed
-                          height: 50,  // Adjust the height as needed
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            elevation: isSelected[index] ? 6 : 3, // Adjust the elevation
-                            color: isSelected[index] ? Color.fromARGB(255, 0, 8, 255) : null,
-                            child: Center(
-                              child: Text(
-                                goals[index],
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.normal,
-                                  color: isSelected[index] ? Colors.white : Colors.black,
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
+                  Wrap(
+                    spacing: 10.0, // Adjust the spacing as needed
+                    runSpacing: 5.0,
+                    children: List.generate(goals.length, (index) {
+                      return InputChip(
+                        label: Text(
+                          goals[index],
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.normal,
                           ),
                         ),
+                        selected: isSelected[index],
+                        onSelected: (bool selected) {
+                          setState(() {
+                            isSelected[index] = selected;
+                          });
+                        },
+                        backgroundColor: isSelected[index] ? Color.fromARGB(255, 0, 8, 255) : Colors.grey[300],
+                        labelStyle: TextStyle(
+                          color: isSelected[index] ? Colors.white : Colors.black,
+                        ),
+                        elevation: isSelected[index] ? 6 : 0, // Add elevation
                       );
-                    },
+                    }),
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Container(
                     width: 250.0,
                     height: 50.0,
@@ -134,6 +132,7 @@ class _WhatIsYourGoalPageState extends State<WhatIsYourGoalPage> {
     );
   }
 }
+
 Color desaturateColor(Color color, double saturationFactor) {
   final HSLColor hslColor = HSLColor.fromColor(color);
   final double saturation = hslColor.saturation * saturationFactor;

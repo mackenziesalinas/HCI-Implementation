@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'dashboard_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SelectHobbiesPage extends StatefulWidget {
   @override
@@ -15,24 +15,21 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
     'Gardening',
     'Music',
     'Sports',
+    'Running',
+    'Painting',
+    'Drawing',
+    'Cycling',
+    'Baking',
+    'Cooking',
+    'Self-improvement',
+    'Shopping',
+    'Volunteering'
   ];
 
   Set<String> selectedHobbies = Set<String>();
 
-  Map<String, String> hobbyImages = {
-    'Nature': 'lib/images/hobby_nature.png',
-    'Reading': 'lib/images/hobby_reading.png',
-    'Crafts': 'lib/images/hobby_crafts.png',
-    'Performing Arts': 'lib/images/hobby_performing_arts.png',
-    'Gardening': 'lib/images/hobby_gardening.png',
-    'Music': 'lib/images/hobby_music.png',
-    'Sports': 'lib/images/hobby_sports.png',
-  };
-
   void navigateToDashboard() {
     // Navigate to the dashboard page here.
-    // You can use Navigator to push a new route.
-    // For example:
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -44,82 +41,86 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              desaturateColor(const Color.fromARGB(255, 147, 205, 253), 0.5),
+              desaturateColor(const Color.fromARGB(255, 144, 161, 255), 0.5),
+              desaturateColor(Color.fromARGB(255, 253, 191, 241), 0.5),
+              desaturateColor(Color.fromARGB(255, 255, 255, 255), 0.5),
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            child: ListView(
+              children: <Widget>[
                 const SizedBox(height: 50),
                 Text(
-                  'What are your interests/hobbies?',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.grey[700],
+                  'Choose your interests\n(one or more):',
+                  style: GoogleFonts.playfairDisplay(
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
                   ),
                 ),
-                const SizedBox(height: 25),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 33),
-                  child: GridView.count(
-                    physics: NeverScrollableScrollPhysics(),
-                    crossAxisCount: 2,
-                    shrinkWrap: true,
-                    children: hobbies.map((hobby) {
-                      final isSelected = selectedHobbies.contains(hobby);
+                const SizedBox(height: 30),
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 6.0,
+                  children: hobbies.map((hobby) {
+                    final isSelected = selectedHobbies.contains(hobby);
 
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (isSelected) {
-                              selectedHobbies.remove(hobby);
-                            } else {
-                              selectedHobbies.add(hobby);
-                            }
-                          });
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.white),
-                            borderRadius: BorderRadius.circular(16),
-                            color: isSelected ? Colors.purple : Colors.grey[200],
-                          ),
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                hobbyImages[hobby]!,
-                                height: 120,
-                              ),
-                              SizedBox(height: 10),
-                              Text(
-                                hobby,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
+                    return InputChip(
+                      label: Text(
+                        hobby,
+                        style: TextStyle(
+                          color: isSelected ? Colors.white : Colors.black,
                         ),
-                      );
-                    }).toList(),
-                  ),
+                      ),
+                      backgroundColor: isSelected ? Color.fromARGB(255, 0, 8, 255) : Colors.grey[300],
+                      selected: isSelected,
+                      elevation: 6, // Add elevation
+                      onPressed: () {
+                        setState(() {
+                          if (isSelected) {
+                            selectedHobbies.remove(hobby);
+                          } else {
+                            selectedHobbies.add(hobby);
+                          }
+                        });
+                      },
+                    );
+                  }).toList(),
                 ),
+                SizedBox(height: 30),
                 ElevatedButton(
-                  onPressed: navigateToDashboard,
-                  style: ElevatedButton.styleFrom(
-                  primary: Colors.black, // Set the button background color to black
+                onPressed: navigateToDashboard,
+                style: ElevatedButton.styleFrom(
+                  primary: Color.fromARGB(255, 0, 8, 255),
+                  onPrimary: Colors.white,
+                  elevation: 30,
+                  side: BorderSide(color: Color.fromARGB(255, 0, 5, 9)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0),
                   ),
-                  child: Text('Next',
+                  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 20), // Adjusted padding
+                ),
+                child: Text(
+                  'NEXT',
                   style: TextStyle(
                     color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,          
-                    ),
-                  )
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16,
+                  ),
                 ),
+              ),
+
+                SizedBox(height: 60),
               ],
             ),
           ),
@@ -127,5 +128,43 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
       ),
     );
   }
+
+  Color desaturateColor(Color color, double saturationFactor) {
+    final HSLColor hslColor = HSLColor.fromColor(color);
+    final double saturation = hslColor.saturation * saturationFactor;
+    return hslColor.withSaturation(saturation).toColor();
+  }
 }
 
+class DashboardPage extends StatelessWidget {
+  final Set<String> selectedHobbies;
+
+  DashboardPage({required this.selectedHobbies});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Dashboard'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+              'Selected Hobbies:',
+              style: TextStyle(fontSize: 24),
+            ),
+            Column(
+              children: selectedHobbies
+                  .map((hobby) => Text(
+                        hobby,
+                        style: TextStyle(fontSize: 20),
+                      ))
+                  .toList(),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
