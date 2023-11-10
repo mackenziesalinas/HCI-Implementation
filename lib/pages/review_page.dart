@@ -59,7 +59,7 @@ class _ReviewPageState extends State<ReviewPage> {
                           rateApp(i);
                         },
                         child: Container(
-                          color: i <= rating ? Colors.white : null,
+                          color: i <= rating ? Colors.transparent : null,
                           child: Icon(
                             i <= rating ? Icons.star : Icons.star_border,
                             size: 40,
