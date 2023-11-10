@@ -45,6 +45,7 @@ class FinishedActivityPage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     // Navigate to another page or perform an action
+                    Navigator.pushNamed(context, '/review_page');
                   },
                   style: ElevatedButton.styleFrom(
                     primary: Color.fromARGB(255, 0, 8, 255),
@@ -55,7 +56,7 @@ class FinishedActivityPage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                  child: Text('RETURN HOME'),
+                  child: Text('CONTINUE'),
                 ),
               ),
             ],
