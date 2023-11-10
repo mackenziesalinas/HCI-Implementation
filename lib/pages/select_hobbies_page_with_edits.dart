@@ -15,19 +15,18 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
     'Gardening',
     'Music',
     'Sports',
+    'Running',
+    'Painting',
+    'Drawing',
+    'Cycling',
+    'Baking',
+    'Cooking',
+    'Self-improvement',
+    'Shopping',
+    'Volunteering'
   ];
 
   Set<String> selectedHobbies = Set<String>();
-
-  Map<String, String> interestEmojis = {
-    'Nature': '🌿',
-    'Reading': '📚',
-    'Crafts': '✂️',
-    'Performing Arts': '🎭',
-    'Gardening': '🌷',
-    'Music': '🎵',
-    'Sports': '⚽',
-  };
 
   void navigateToDashboard() {
     // Navigate to the dashboard page here.
@@ -60,72 +59,49 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: ListView(
               children: <Widget>[
-                const SizedBox(height: 75),
+                const SizedBox(height: 50),
                 Text(
-                  'Choose your interests (one or more):',
+                  'Choose your interests\n(one or more):',
                   style: GoogleFonts.playfairDisplay(
-                    fontSize: 30,
-                    fontWeight: FontWeight.normal,
+                    fontSize: 25,
+                    fontWeight: FontWeight.w600,
                     color: Colors.black,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 40),
-                Column(
-                  children: hobbies.map((hobby) {
-                    final isSelected = selectedHobbies.contains(hobby);
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.all(8.0), // Add padding around the Wrap
+                  child: Wrap(
+                    spacing: 8.0,
+                    runSpacing: 6.0,
+                    children: hobbies.map((hobby) {
+                      final isSelected = selectedHobbies.contains(hobby);
 
-                    return Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              if (isSelected) {
-                                selectedHobbies.remove(hobby);
-                              } else {
-                                selectedHobbies.add(hobby);
-                              }
-                            });
-                          },
-                          child: Card(
-                            elevation: isSelected ? 6 : 3, // Add elevation
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0), // Make it more circular
-                            ),
-                            color: isSelected ? Color.fromARGB(255, 0, 8, 255) : Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0), // Add padding
-                              child: Column(
-                                children: [
-                                  Text(
-                                    interestEmojis[hobby]!,
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: isSelected ? Colors.white : Colors.black,
-                                    ),
-                                  ),
-                                  SizedBox(height: 10),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      hobby,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: isSelected ? Colors.white : Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
+                      return InputChip(
+                        label: Text(
+                          hobby,
+                          style: TextStyle(
+                            color: isSelected ? Colors.white : Colors.black,
                           ),
                         ),
-                        SizedBox(height: 5),
-                      ],
-                    );
-                  }).toList(),
+                        backgroundColor: isSelected ? Color.fromARGB(255, 0, 8, 255) : Colors.grey[300],
+                        selected: isSelected,
+                        elevation: 6,
+                        onPressed: () {
+                          setState(() {
+                            if (isSelected) {
+                              selectedHobbies.remove(hobby);
+                            } else {
+                              selectedHobbies.add(hobby);
+                            }
+                          });
+                        },
+                      );
+                    }).toList(),
+                  ),
                 ),
-                SizedBox(height: 50),
+                SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: navigateToDashboard,
                   style: ElevatedButton.styleFrom(
@@ -136,7 +112,7 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 75, vertical: 30),
+                    padding: EdgeInsets.symmetric(horizontal: 5, vertical: 20),
                   ),
                   child: Text(
                     'NEXT',
@@ -147,6 +123,7 @@ class _SelectHobbiesPageState extends State<SelectHobbiesPage> {
                     ),
                   ),
                 ),
+
                 SizedBox(height: 60),
               ],
             ),
@@ -184,9 +161,9 @@ class DashboardPage extends StatelessWidget {
             Column(
               children: selectedHobbies
                   .map((hobby) => Text(
-                        hobby,
-                        style: TextStyle(fontSize: 20),
-                      ))
+                hobby,
+                style: TextStyle(fontSize: 20),
+              ))
                   .toList(),
             ),
           ],
