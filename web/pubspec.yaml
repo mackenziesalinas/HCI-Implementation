@@ -1,0 +1,39 @@
+name: tech_addict
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 0.0.1+1
+
+environment:
+  sdk: ^3.1.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_countdown_timer: ^4.1.0
+  google_fonts: ^6.1.0
+  table_calendar: ^3.0.2
+  flutter_staggered_grid_view: ^0.4.0
+  syncfusion_flutter_calendar: ^19.3.49
+  intl: ^0.17.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_feather_icons: ^2.0.0+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/AdobeStock_563966226.png
+    - assets/AdobeStock_80003123.jpeg
+    - assets/apple.png
+    - assets/google.png
+    - assets/AdobeStock_523517509.png
+    - assets/AdobeStock_619289003.png
+    - assets/AdobeStock_505636066.png
+    - assets/AdobeStock_332072676.jpeg
