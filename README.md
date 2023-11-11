@@ -27,7 +27,7 @@ TechAddict is a purpose-driven mobile application designed to empower young indi
 
 Here's a comprehensive guide to using the TechAddict app:
 
-1. **Login**: As you launch the app, you'll be prompted to log in. Simply use your registered username, "janedoe@gmail.com," and your password, "password123."
+1. **Sign Up**: As you launch the app, you'll be prompted to sign up. Simply make your account to begin.
 
 2. **Explore Hobbies**: Once logged in, you'll be introduced to a world of hobbies and interests. Take your time to browse and handpick the activities that resonate with your passions and preferences.
 
