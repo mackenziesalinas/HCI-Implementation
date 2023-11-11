@@ -6,10 +6,10 @@ TechAddict is a purpose-driven mobile application designed to empower young indi
 
 ### Sign Up
 - Begin your TechAddict experience by signing up with the following credentials:
-  - First Name:
-  - Last Name:
-  - Email:
-  - Password:
+  - First Name
+  - Last Name
+  - Email
+  - Password
     
 ### Hobby Selection
 - Explore a diverse array of hobbies that cater to your unique interests and choose the ones that ignite your curiosity.
