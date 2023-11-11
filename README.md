@@ -4,10 +4,12 @@ TechAddict is a purpose-driven mobile application designed to empower young indi
 
 ## How the User Interface Works
 
-### User Login
-- Begin your TechAddict experience by logging into your account with the following credentials:
-  - Username: janedoe@gmail.com
-  - Password: password123
+### Sign Up
+- Begin your TechAddict experience by signing up with the following credentials:
+  - First Name:
+  - Last Name:
+  - Email:
+  - Password:
     
 ### Hobby Selection
 - Explore a diverse array of hobbies that cater to your unique interests and choose the ones that ignite your curiosity.
