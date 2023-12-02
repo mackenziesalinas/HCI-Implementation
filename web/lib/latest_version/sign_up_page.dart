@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'my_textfield.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -17,31 +15,17 @@ class _SignUpPageState extends State<SignUpPage> {
 
   bool agreedToTerms = false;
 
-  // Authentication related code
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  void _signUp(String email, String password, String displayName) {
+    // Simulate user creation logic (replace this with your own authentication logic)
+    // For example, you can use packages like Firebase Authentication or others.
+    // For simplicity, we'll just print the user data for now.
 
-  Future<void> _signUp(String email, String password, String displayName) async {
-    try {
-      // Create user in Firebase Authentication
-      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+    print("User signed up successfully!");
+    print("First Name: $displayName");
+    print("Email: $email");
 
-      // Store additional user information in the Realtime Database
-      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
-        "email": email,
-        "displayName": displayName,
-      });
-
-      print("User signed up successfully!");
-
-      // Navigate to the next page after successful sign-up
-      Navigator.pushNamed(context, '/get_to_know_you_page');
-    } on FirebaseAuthException catch (e) {
-      print("Failed to sign up: $e");
-      // Handle sign-up failure, e.g., show an error message
-    }
+    // Navigate to the next page after successful sign-up
+    Navigator.pushNamed(context, '/get_to_know_you_page');
   }
 
   @override
@@ -86,7 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(20.0), // Adjust the padding as needed
+                  padding: const EdgeInsets.all(20.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -98,7 +82,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           color: Colors.black,
                         ),
                       ),
-                      SizedBox(width: 10.0), // Adjust the width of the SizedBox for spacing
+                      SizedBox(width: 10.0),
                       Icon(Icons.star, size: 35.0, color: Colors.yellow),
                     ],
                   ),
@@ -160,7 +144,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     final password = passwordController.text;
 
                     if (agreedToTerms) {
-                      // Call the signUp function with user data
                       _signUp(email, password, '$firstName $lastName');
                     } else {
                       // Show an alert or message that the user must agree to the terms
@@ -226,3 +209,4 @@ class _SignUpPageState extends State<SignUpPage> {
 }
 
 void main() => runApp(MaterialApp(home: SignUpPage()));
+
